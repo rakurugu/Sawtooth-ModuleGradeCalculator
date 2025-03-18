@@ -121,3 +121,60 @@ void drawSawtoothWaves()
         drawWaveLoop(size);
     }
 }
+
+//This function contains the if conditionals for Alphanumeric grades and it's various grade point. It's used by moduleGradeDisplay().
+int getGradePoint(const std::string& grade)
+{
+    if (grade == "A1" || grade == "a1") return 23;
+    else if (grade == "A2" || grade == "a2") return 22;
+    else if (grade == "A3" || grade == "a3") return 21;
+    else if (grade == "A4" || grade == "a4") return 20;
+    else if (grade == "A5" || grade == "a5") return 19;
+    else if (grade == "B1" || grade == "b1") return 18;
+    else if (grade == "B2" || grade == "b2") return 17;
+    else if (grade == "B3" || grade == "b3") return 16;
+    else if (grade == "C1" || grade == "c1") return 15;
+    else if (grade == "C2" || grade == "c2") return 14;
+    else if (grade == "C3" || grade == "c3") return 13;
+    else if (grade == "D1" || grade == "d1") return 12;
+    else if (grade == "D2" || grade == "d2") return 11;
+    else if (grade == "D3" || grade == "d3") return 10;
+    else if (grade == "M1" || grade == "m1") return 9;
+    else if (grade == "M2" || grade == "m2") return 8;
+    else if (grade == "M3" || grade == "m3") return 7;
+    else if (grade == "CF" || grade == "cf") return 5;
+    else if (grade == "BF" || grade == "bf") return 2;
+    else if (grade == "QF" || grade == "qf") return 0;
+    else return -1; // Invalid grade
+}
+
+//This function contains the if conditions for User's Rounded Module Mark and it's various Alphanumeric grades. It's used by moduleGradeDisplay().
+std::string moduleGrade(const int& mark)
+{
+    if (mark == 23) return "A1";
+    else if (mark == 22) return "A2";
+    else if (mark == 21) return "A3";
+    else if (mark == 20) return "A4";
+    else if (mark == 19) return "A5";
+    else if (mark == 18) return "B1";
+    else if (mark == 17) return "B2";
+    else if (mark == 16) return "B3";
+    else if (mark == 15) return "C1";
+    else if (mark == 14) return "C2";
+    else if (mark == 13) return "C3";
+    else if (mark == 12) return "D1";
+    else if (mark == 11) return "D2";
+    else if (mark == 10) return "D3";
+    else if (mark == 9) return "M1";
+    else if (mark == 8) return "M2";
+    else if (mark == 7) return "M3";
+    else if (mark == 6) return "M3";
+    else if (mark == 5) return "CF";
+    else if (mark == 4) return "CF";
+    else if (mark == 3) return "CF";
+    else if (mark == 2) return "BF";
+    else if (mark == 1) return "BF";
+    else if (mark == 0) return "QF";
+    else return "INVALID GRADE";
+}
+
