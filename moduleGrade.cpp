@@ -178,3 +178,90 @@ std::string moduleGrade(const int& mark)
     else return "INVALID GRADE";
 }
 
+//This functions contain the main code for calculating the Module Grade.
+void moduleGradeDisplay ()
+{
+    std::string grade1, grade2, grade3;                     // Initialize Variables for Alphanumeric Grade
+    double weight1 = 0, weight2 = 0, weight3 = 0;           // Initialize Variables for Weighting Marks
+    double finalMark1 = 0, finalMark2 = 0, finalMark3 = 0;  // Initialize Variables for Individual Assessment marks.
+    double moduleMark = 0;                                 // Initialize Variable for Module Mark.
+    double roundedModuleMark = 0;                          // Initialize Variable for rounding the User's Module Mark.
+
+    std::cout << "WELCOME TO UOD MODULE GRADE PROGRAM" << std::endl;
+    std::cout << "NOTICE: Assessment Grades should be Alphanumeric." << std::endl;
+    std::cout << "        Weighting Marks are in Percentages." << std::endl;
+    std::cout << "**************************************************" << std::endl;
+
+    // First Assessment Inputs.
+    do
+    {
+        std::cout << "Enter First Assessment Grade: ";
+        std::getline(std::cin, grade1);
+    }
+    while (getGradePoint(grade1) == -1);
+
+    do
+    {
+        std::cout << "Enter Weighting Mark for First Assessment: ";
+        std::cin >> weight1;
+
+        std::cin.clear();   //Used to clear error state of User's input and restore the stream to a valid state.
+        fflush(stdin);
+    }
+    while (weight1 < 1 || weight1 >= 100);
+    std::cout << std::endl;
+
+    // Second Assessment Inputs.
+    do
+    {
+        std::cout << "Enter Second Assessment Grade: ";
+        std::getline(std::cin, grade2);
+    }
+    while (getGradePoint(grade2) == -1);
+
+    do
+    {
+        std::cout << "Enter Weighting Mark for Second Assessment: ";
+        std::cin >> weight2;
+
+        std::cin.clear();
+        fflush(stdin);
+    }
+    while (weight1 + weight2 >= 100 || weight2 >= 100);
+    std::cout << std::endl;
+
+    // Third Assessment Inputs. Here the third weighting mark is provided by the program.
+    do
+    {
+        std::cout << "Enter Third Assessment Grade: ";
+        std::getline(std::cin, grade3);
+    }
+    while (getGradePoint(grade3) == -1);
+
+    // Calculate the third weighting mark.
+    weight3 = 100 - (weight1 + weight2);
+    std::cout << "This is your Third Weighting Mark: " << weight3 << std::endl;
+    std::cout << std::endl;
+
+        // Calculate Marks for each Assessment.
+    finalMark1 = getGradePoint(grade1) * (weight1 / 100.00);
+    finalMark2 = getGradePoint(grade2) * (weight2 / 100.00);
+    finalMark3 = getGradePoint(grade3) * (weight3 / 100.00);
+
+    std::cout << "1st assessment score is: " << finalMark1 << std::endl;
+    std::cout << "2nd assessment score is: " << finalMark2 << std::endl;
+    std::cout << "3rd assessment score is: " << finalMark3 << std::endl;
+    std::cout << std::endl;
+
+    // Calculate User's Module Mark
+    moduleMark = finalMark1 + finalMark2 + finalMark3;
+    std::cout << "Your Module Mark is: " << moduleMark << std::endl;
+
+    // Round Module Mark to the Nearest Integer.
+    roundedModuleMark = round(moduleMark);
+    std::cout << "Your Rounded Module Mark is: " << roundedModuleMark << std::endl;
+    std::cout << std::endl;
+
+    // show User's Module Grade.
+    std::cout << "Your Module Grade is: " << moduleGrade(roundedModuleMark) << std::endl;
+}
