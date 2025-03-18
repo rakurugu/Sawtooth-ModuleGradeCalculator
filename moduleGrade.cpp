@@ -55,3 +55,69 @@ int main()
 
     return 0;
 }
+
+// Functions Definitions
+
+// This function contains the for loop needed by the drawSawtoothWaves() to draw the sawtooth waves.
+void drawWaveLoop(int size)
+{
+    for (int i = 1; i <= size; ++i) 
+    {
+        for (int j = 0; j < i; ++j) 
+        {
+            std::cout << "#";
+        }
+        std::cout << std::endl;
+        clock_t goal = MILLISECONDS + clock();
+        while (goal > clock()); // introduce delay
+    }
+}
+
+// This function contains User's input and loops for drawing sawtooth waves.
+void drawSawtoothWaves()
+{
+    // Initialize our variables
+    int initialSize = 0, finalSize = 0;
+
+    // Instruct User that Inputs should be positive
+    std::cout << "WELCOME TO THE SAWTOOTH WAVES PROGRAM." << std::endl;
+    std::cout << "INSTRUCTION: SIZES OF WAVES MUST BE POSITIVE INTEGERS." << std::endl;
+    std::cout << "**************************************************" << std::endl;
+
+
+    // Get Initial Size from User
+    do
+    {
+        std::cout << "NOTICE: Initial Size must be a Positive Integer" << std::endl;
+        std::cout << "Enter the initial size of the waves: ";
+        std::cin >> initialSize;
+
+        // The code below is used to clear error state of User's input and restore the stream to a valid state.
+        std::cin.clear();
+        fflush(stdin);
+
+    } while (initialSize <= 0);
+    std::cout << std::endl;
+
+
+    // Get final size from User
+    do
+    {
+        std::cout << "NOTICE: Final Size must be a Positive Integer" << std::endl;
+        std::cout << "Enter the final size of the waves: ";
+        std::cin >> finalSize;
+
+        // The code below is used to clear error state of User's input and restore the stream to a valid state.
+        std::cin.clear();
+        fflush(stdin);
+
+    } while (finalSize <= 0);
+
+
+    // Draw Sawtooth Waves
+    int step = (initialSize < finalSize) ? 1 : -1;
+    for (int size = initialSize; size != finalSize + step; size += step) 
+    {
+        drawWaveLoop(size);
+    }
+}
